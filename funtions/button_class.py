@@ -19,5 +19,5 @@ class Button:
         text_rect = text.get_rect(center=self.rect.center)
         window.blit(text, text_rect)
         
-    def draw_hover(self):
+    def draw_hover(self,window,mos_x,mos_y):
         pass
