@@ -1,37 +1,31 @@
 import pygame
 import sys
-from funtions import Button
 
-# Constants
-WIDTH = HEIGHT = 750
-ROWS, COLS = 3, 3
-BUTTON_SIZE = 250
-BUTTON_MARGIN = 0
-
-# Colors
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-BLUE = (0, 0, 255)
-
-def make_buttons(buttons):
-    for row in range(ROWS):
-        for col in range(COLS):
-            x = col * (BUTTON_SIZE + BUTTON_MARGIN) + BUTTON_MARGIN
-            y = row * (BUTTON_SIZE + BUTTON_MARGIN) + BUTTON_MARGIN
-            button = Button(x, y, BUTTON_SIZE, BUTTON_SIZE, BLUE, f"{row}-{col}")
-            buttons.append(button)
-    return buttons
-
-
-#Inicialise pygame
 pygame.init()
-running = True
-while running:
+
+# Set up display
+width, height = 400, 300
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Mouse Collision Example")
+
+# Create a rectangle
+rect = pygame.Rect(50, 50, 100, 50)
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-    
-pygame.quit()
-            
-            
+
+    # Get the mouse position
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    # Check for collision
+    if rect.collidepoint(mouse_x, mouse_y):
+        print("Mouse collides with the rectangle!")
+
+    # Draw the rectangle
+    screen.fill((255, 255, 255))
+    pygame.draw.rect(screen, (255, 0, 0), rect)
+    pygame.display.flip()
+    pygame.time.delay(10)
