@@ -1,6 +1,3 @@
-import os
-import pygame
-import funtions.text_funtions as text
 import sys    
 
 if __name__ == "__main__":
@@ -9,10 +6,12 @@ if __name__ == "__main__":
         text.text_game()
         
     elif sys.argv[1].lower() == "gui":
-        pass
+        import funtions.gui_functions as gui
+        gui.main()
     
     elif sys.argv[1].lower() == "help":
         print("text - to run text based version.")
         print("gui  - to run gui based version.")
+        
     else:
         print("Not a valid option.Please run the 'help' command for assistance.")
